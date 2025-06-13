@@ -11,6 +11,7 @@ const initialState = {
       page: 1,
       results: PAGE_SIZE,
     } as Pick<ApiPaginate, "page" | "results">,
+    selected: {} as User | {},
   },
 };
 

@@ -1,22 +1,27 @@
-.profile--wrapper {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  padding: 1rem 1.5rem;
-  display: grid;
-  gap: 1rem;
+.profile {
+  &--wrapper {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 1rem 1.5rem;
+    display: grid;
+    gap: 1rem;
+    // Default (mobile-first): 1 column
+    grid-template-columns: 1fr;
 
-  // Default (mobile-first): 1 column
-  grid-template-columns: 1fr;
+    // sm: ≥ 640px — 2 columns
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-  // sm: ≥ 640px — 2 columns
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(2, 1fr);
+    // lg: ≥ 1024px — 3 columns
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
-
-  // lg: ≥ 1024px — 3 columns
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+  &--image {
+    margin: auto;
+    border-radius: 100%;
   }
   &--item {
     display: flex;

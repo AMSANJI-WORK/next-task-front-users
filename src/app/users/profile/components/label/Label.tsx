@@ -1,17 +1,24 @@
 import React, { FC, PropsWithChildren } from "react";
 import "./label.scss";
-type Props = {
+import classNames from "classnames";
+type Props = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> & {
   label: string;
+  className?: string;
 };
 
 const ProfileLebelValue: FC<PropsWithChildren<Props>> = ({
   label,
   children,
+  className = "",
+  ...props
 }) => {
   return (
-    <div className="label--container">
+    <div {...props} className={classNames("label--container", className)}>
       <div className="label--title">{label}</div>
-      <div className="label--value">{children}</div>
+      <div className="label--value">{children || "-"}</div>
     </div>
   );
 };

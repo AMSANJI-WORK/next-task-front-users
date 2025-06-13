@@ -33,3 +33,28 @@
     max-width: 1440px;
   }
 }
+
+.hidden {
+  display: none !important;
+
+  &--lg {
+    // lg: ≥ 1024px
+    @media (min-width: 1024px) {
+      display: unset !important;
+    }
+  }
+
+  &--md {
+    // md: ≥ 768px
+    @media (min-width: 768px) {
+      display: unset !important;
+    }
+  }
+
+  &--sm {
+    // sm: ≥ 640px
+    @media (min-width: 640px) {
+      display: unset !important;
+    }
+  }
+}
