@@ -1,15 +1,3 @@
-export interface UsersResponse {
-  results: User[];
-  info: PaginateInfo;
-}
-
-export type PaginateInfo = {
-  seed: string;
-  results: number;
-  page: number;
-  version: string;
-};
-
 export type User = {
   gender: string;
   name: {
@@ -24,7 +12,10 @@ export type User = {
   registered: UserDob;
   phone: string;
   cell: string;
-  id: UserID;
+  id: {
+    name: string;
+    value: string;
+  };
   picture: UserPicture;
   nat: string;
 };
@@ -32,11 +23,6 @@ export type User = {
 export type UserDob = {
   date: Date;
   age: number;
-};
-
-export type UserID = {
-  name: string;
-  value: string;
 };
 
 export type UserLocation = {
@@ -67,7 +53,6 @@ export type UserLoginInfo = {
   sha1: string;
   sha256: string;
 };
-
 
 export type UserPicture = {
   large: string;

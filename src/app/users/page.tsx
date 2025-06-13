@@ -1,5 +1,11 @@
-const UserPage = () => {
-  return <main>Home Page</main>;
+import UsersContianer from "./(core)/components/Container";
+
+const UserPage = async () => {
+  return (
+    <main>
+      <UsersContianer />
+    </main>
+  );
 };
 
 export default UserPage;
