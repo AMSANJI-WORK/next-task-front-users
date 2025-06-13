@@ -8,9 +8,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: $backgroud-primary;
-}
-
-main {
   min-height: 100svh;
   overflow-y: auto;
+  position: relative;
 }

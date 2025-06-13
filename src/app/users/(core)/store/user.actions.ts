@@ -5,7 +5,6 @@ import { GetUsersProps } from "../model/users.repo.model";
 import { ApiStatus } from "@/app/(applications)/(http)/http.constant";
 import { ApiResponse } from "@/app/(applications)/(http)/http.model";
 import { User } from "../model/users.model";
-import { userData } from "../mock/user.mock";
 
 const handleSuccess =
   (payload: ApiResponse<User>) =>
@@ -36,8 +35,7 @@ export const userGetAll = (payload?: Partial<GetUsersProps>) => {
       if (response.status === ApiStatus.SUCCESS)
         dispatch(handleSuccess(response.data));
     } catch (error) {
-      // fill list with mock data because of internet issue
-      dispatch(handleSuccess(userData));
+      console.log(error);
     } finally {
       dispatch(setUserState({ loading: false }));
     }
