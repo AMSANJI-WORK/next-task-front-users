@@ -1,7 +1,4 @@
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "@/app/(applications)/hooks/store.hooks";
+import { useAppSelector } from "@/app/(applications)/hooks/store.hooks";
 import "./list.scss";
 import React from "react";
 import ListItem from "../list-item/ListItem";
