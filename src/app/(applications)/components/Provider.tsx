@@ -2,7 +2,7 @@
 import React, { FC, PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import store from "../store/app.store";
-import { ToastProvider } from "./toast/toast";
+import { ToastProvider } from "./toast/Toast";
 import AppContainer from "./App";
 
 const AppProvider: FC<PropsWithChildren> = ({ children }) => {

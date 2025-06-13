@@ -1,5 +1,5 @@
-@import "variables";
-
+@import "container.scss";
+$backgroud-primary: #ececec;
 * {
   box-sizing: border-box;
 }
@@ -7,8 +7,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: $backgroud-primary;
+}
+
+main {
+  position: relative;
   min-height: 100svh;
   overflow-y: auto;
-  position: relative;
+  background: $backgroud-primary;
 }

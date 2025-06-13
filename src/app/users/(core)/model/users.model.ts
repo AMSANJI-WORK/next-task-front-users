@@ -1,3 +1,5 @@
+import { ApiResponse } from "@/app/(applications)/(http)/http.model";
+
 export type User = {
   gender: string;
   name: {
@@ -19,7 +21,7 @@ export type User = {
   picture: UserPicture;
   nat: string;
 };
-
+export type UserProfile = Omit<ApiResponse<User>, "info" | "login">;
 export type UserDob = {
   date: string;
   age: number;

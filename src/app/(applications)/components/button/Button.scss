@@ -1,0 +1,74 @@
+.button {
+  --min-height: 32px;
+  --radius: 12px;
+  --padding-inline: 1rem;
+  --padding-block: 0.5rem;
+
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 0.25rem; // Remove quotes
+
+  // Use the variables
+  min-height: var(--min-height);
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-block);
+  border-radius: var(--radius);
+  transition: all 0.125s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+  &--lg {
+    --padding-inline: 1.7rem;
+    --padding-block: 0.75rem;
+    font-size: 20px;
+    --min-height: 40px;
+  }
+
+  &--md {
+    --padding-inline: 1.4rem;
+    --padding-block: 0.5rem;
+    font-size: 18px;
+    --min-height: 32px;
+  }
+
+  &--sm {
+    --padding-inline: 1rem;
+    --padding-block: 0.25rem;
+    --min-height: 24px;
+    font-size: 14px;
+  }
+  &--loading > svg {
+    animation: spin 1s infinite linear;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &--rounded {
+    &--lg {
+      --radius: 20px;
+    }
+
+    &--md {
+      --radius: 12px;
+    }
+
+    &--sm {
+      --radius: 6px;
+    }
+
+    &--none {
+      --radius: 0px;
+    }
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

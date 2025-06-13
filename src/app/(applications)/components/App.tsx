@@ -1,16 +1,13 @@
-"use client";
-import React, { FC, Fragment, PropsWithChildren, useEffect } from "react";
-import { useToast } from "./toast/toast";
+import React, { FC, PropsWithChildren } from "react";
+import AppHeader from "./header/Header";
 
 const AppContainer: FC<PropsWithChildren> = ({ children }) => {
-  const { resetToast } = useToast();
-  useEffect(() => {
-    return () => {
-      resetToast();
-    };
-  }, []);
-
-  return <Fragment>{children}</Fragment>;
+  return (
+    <main>
+      <AppHeader />
+      {children}
+    </main>
+  );
 };
 
 export default AppContainer;

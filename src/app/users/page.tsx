@@ -1,11 +1,7 @@
-import UsersContianer from "./(core)/components/Container";
+import UsersContianer from "./(core)/components/container/Container";
 
 const UserPage = async () => {
-  return (
-    <main>
-      <UsersContianer />
-    </main>
-  );
+  return <UsersContianer />;
 };
 
 export default UserPage;
