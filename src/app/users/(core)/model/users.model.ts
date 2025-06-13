@@ -21,7 +21,7 @@ export type User = {
 };
 
 export type UserDob = {
-  date: Date;
+  date: string;
   age: number;
 };
 

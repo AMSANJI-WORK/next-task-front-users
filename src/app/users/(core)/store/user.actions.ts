@@ -5,6 +5,7 @@ import { GetUsersProps } from "../model/users.repo.model";
 import { ApiStatus } from "@/app/(applications)/(http)/http.constant";
 import { ApiResponse } from "@/app/(applications)/(http)/http.model";
 import { User } from "../model/users.model";
+import { userData } from "../mock/user.mock";
 
 const handleSuccess =
   (payload: ApiResponse<User>) => (dispatch: AppDispatch) => {
@@ -36,6 +37,8 @@ export const userGetAll = (payload?: Partial<GetUsersProps>) => {
         dispatch(handleSuccess(response.data));
     } catch (error) {
       console.log(error);
+      // use fake data for demo
+      dispatch(handleSuccess(userData));
     } finally {
       dispatch(setUserState({ loading: false }));
     }
