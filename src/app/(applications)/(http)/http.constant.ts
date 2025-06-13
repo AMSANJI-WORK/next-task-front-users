@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const PAGE_SIZE = 100;
+export const PAGE_SIZE = 20;
 
 export enum ApiStatus {
   SUCCESS = 200,
@@ -10,11 +10,17 @@ export enum ApiStatus {
 export enum ApiMESSAGE {
   ERROR_CORES = "CORS Policy: Not allowed",
   SERVER_ERROR = "Internal Server Error",
-  TIMEOUT = "Connection TimeOut",
 }
 
 const client = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL_INTERNAL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
+client.interceptors.request.use(
+  (config) => config,
+  // error handling
+  (error) => {
+    console.log(error);
+  }
+);
 export default client;

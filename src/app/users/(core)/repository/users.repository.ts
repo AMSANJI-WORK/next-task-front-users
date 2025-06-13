@@ -4,7 +4,7 @@ import { ApiResponse } from "@/app/(applications)/(http)/http.model";
 import { User } from "../model/users.model";
 
 class UserRepository {
-  private resource = "/api/users";
+  private resource = "/api/";
   getAll = (
     params: Partial<GetUsersProps> = {
       results: PAGE_SIZE,

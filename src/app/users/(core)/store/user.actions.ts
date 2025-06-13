@@ -8,16 +8,16 @@ import { User } from "../model/users.model";
 import { userData } from "../mock/user.mock";
 
 const handleSuccess =
-  (payload: ApiResponse<User>) => (dispatch: AppDispatch) => {
+  (payload: ApiResponse<User>) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
+    const currentList = getState().user.data.list;
     const {
       info: { page, results },
-      results: list,
+      results: data,
     } = payload;
-    console.log("users", list);
-
     dispatch(
       setUserState({
-        list,
+        list: page === 1 ? data : [...currentList, ...data],
         paginate: {
           page,
           results,
@@ -28,7 +28,7 @@ const handleSuccess =
 
 export const userGetAll = (payload?: Partial<GetUsersProps>) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
-    const { list, loading } = getState().user.data;
+    const loading = getState().user.data.loading;
     try {
       if (loading) return;
       dispatch(setUserState({ loading: true }));
@@ -36,8 +36,7 @@ export const userGetAll = (payload?: Partial<GetUsersProps>) => {
       if (response.status === ApiStatus.SUCCESS)
         dispatch(handleSuccess(response.data));
     } catch (error) {
-      console.log(error);
-      // use fake data for demo
+      // fill list with mock data because of internet issue
       dispatch(handleSuccess(userData));
     } finally {
       dispatch(setUserState({ loading: false }));
