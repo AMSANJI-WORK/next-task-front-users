@@ -21,7 +21,7 @@ export type User = {
   picture: UserPicture;
   nat: string;
 };
-export type UserProfile = Omit<ApiResponse<User>, "info" | "login">;
+export type UserProfile = Omit<ApiResponse<User>, "info">;
 export type UserDob = {
   date: string;
   age: number;

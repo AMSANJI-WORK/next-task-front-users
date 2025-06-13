@@ -5,7 +5,9 @@ import { userGetAll } from "../../store/user.actions";
 import { useAppDispatch } from "@/app/(applications)/hooks/store.hooks";
 import { setUserState } from "../../store/user.slice";
 import { PAGE_SIZE } from "@/app/(applications)/(http)/http.constant";
-
+import UserList from "../list/List";
+import UserFilters from "../filters/Filters";
+import "./container.scss";
 const UsersContianer = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -21,7 +23,12 @@ const UsersContianer = () => {
     };
   }, [dispatch]);
 
-  return <div className="container"></div>;
+  return (
+    <div className="container list--wrapper">
+      <UserList />
+      <UserFilters />
+    </div>
+  );
 };
 
 export default UsersContianer;

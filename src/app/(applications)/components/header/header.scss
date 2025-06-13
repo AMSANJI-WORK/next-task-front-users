@@ -1,20 +1,14 @@
-$shadow-md:0 2px 8px rgba(0, 0, 0, 0.12);
-
-
 .header {
-  --padding : 1rem
   width: 100%;
   min-height: 80px;
   margin-bottom: 2rem;
-  box-shadow: $shadow-md;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   display: flex;
   justify-content: space-between;
   background: #ffff;
   align-items: center;
   padding-inline: 1rem;
   z-index: 10;
-  top: 0;
-  position: sticky;
   &--warapper {
     width: 100%;
     display: flex;

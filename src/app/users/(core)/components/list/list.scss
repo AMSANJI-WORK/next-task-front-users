@@ -1,0 +1,26 @@
+.list {
+  all: unset;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  &-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+    padding: 1.5rem 2.5rem;
+    &--image {
+      &--wrapper {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+      }
+    }
+    &--address {
+      max-width: 300px;
+    }
+  }
+}
