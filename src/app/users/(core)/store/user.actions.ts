@@ -1,6 +1,6 @@
 import { AppDispatch, RootState } from "@/app/(applications)/store/app.store";
 import { setUserState } from "./user.slice";
-import { userRepository } from "../users.repository";
+import { userRepository } from "../repository/users.repository";
 import { GetUsersProps } from "../model/users.repo.model";
 import { ApiStatus } from "@/app/(applications)/(http)/http.constant";
 import { ApiResponse } from "@/app/(applications)/(http)/http.model";

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { userApiRepository } from "../../users/(core)/users.api.repository";
+import { userApiRepository } from "../../users/(core)/repository/users.api.repository";
 import {
   ApiMESSAGE,
   ApiStatus,

@@ -1,7 +1,7 @@
-import { GetUsersProps } from "./model/users.repo.model";
+import { GetUsersProps } from "../model/users.repo.model";
 import client, { PAGE_SIZE } from "@/app/(applications)/(http)/http.constant";
 import { ApiResponse } from "@/app/(applications)/(http)/http.model";
-import { User } from "./model/users.model";
+import { User } from "../model/users.model";
 
 class UserRepository {
   private resource = "/api/users";
