@@ -8,10 +8,24 @@ import { PAGE_SIZE } from "@/app/(applications)/(http)/http.constant";
 import UserList from "../list/List";
 import UserFilters from "../filters/Filters";
 import "./container.scss";
+import { useSearchParams } from "next/navigation";
+
 const UsersContianer = () => {
   const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
+  const handleFetchUser = () => {
+    const query = new Map();
+    query.set("page", 1);
+    query.set("results", PAGE_SIZE);
+    if (searchParams.has("gender"))
+      query.set("gender", searchParams.get("gender"));
+    if (searchParams.has("nat"))
+      query.set("nat", searchParams.getAll("nat"));
+
+    dispatch(userGetAll(Object.fromEntries(query)));
+  };
   useEffect(() => {
-    dispatch(userGetAll());
+    handleFetchUser();
     return () => {
       dispatch(
         setUserState({
@@ -21,7 +35,7 @@ const UsersContianer = () => {
         })
       );
     };
-  }, [dispatch]);
+  }, [dispatch, searchParams]);
 
   return (
     <div className="container list__wrapper">
