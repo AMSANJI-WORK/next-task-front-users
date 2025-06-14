@@ -4,8 +4,8 @@ import AppButton from "@/app/(applications)/components/button/Button";
 const UserFilters = () => {
   return (
     <aside className="filter">
-      <span className="filter--title"> Filters</span>
-      <form className="filter--form">
+      <span className="filter__title"> Filters</span>
+      <form className="filter__form">
         <fieldset>
           <legend>Nationality</legend>
         </fieldset>
@@ -20,7 +20,7 @@ const UserFilters = () => {
             <label>Female</label>
           </div> */}
         </fieldset>
-        <div className="filter--footer">
+        <div className="filter__footer">
           <AppButton size="sm">Submit</AppButton>
           <AppButton size="sm">Reset</AppButton>
         </div>

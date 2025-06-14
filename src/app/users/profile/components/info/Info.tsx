@@ -8,7 +8,6 @@ import {
 } from "@/app/(applications)/hooks/store.hooks";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/(applications)/components/toast/Toast";
-import { User } from "@/app/users/(core)/model/users.model";
 import { getFlagImageUrl } from "@/app/users/(core)/helper/users.helper";
 
 const ProfileInfo = () => {
@@ -45,11 +44,11 @@ const ProfileInfo = () => {
   }, []);
 
   return (
-    <div className="container profile--wrapper">
+    <div className="container profile__wrapper">
       <ProfileLebelValue label="" className="hidden hidden--lg" />
       <Image
         alt={fullname}
-        className="profile--image"
+        className="profile__image"
         src={data.picture?.large || null}
         width={100}
         height={100}
@@ -69,7 +68,8 @@ const ProfileInfo = () => {
           width={20}
           height={12}
           loading="lazy"
-        />
+        />{" "}
+        {""}
         {data.location?.country}
       </ProfileLebelValue>
       <ProfileLebelValue label="state">

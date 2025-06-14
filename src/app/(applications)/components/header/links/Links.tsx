@@ -4,7 +4,7 @@ import HeaderLinkItem from "../link-item/LinkItem";
 
 const HeaderLinks = () => {
   return (
-    <nav className="nav--container">
+    <nav className="nav__container">
       <HeaderLinkItem href={"/users"}>Users</HeaderLinkItem>
     </nav>
   );

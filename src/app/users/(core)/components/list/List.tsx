@@ -4,9 +4,9 @@ import {
 } from "@/app/(applications)/hooks/store.hooks";
 import "./list.scss";
 import React, { useMemo, useState } from "react";
-import ListItem from "../list-item/ListItem";
 import AppButton from "@/app/(applications)/components/button/Button";
 import classNames from "classnames";
+import ListItem from "../list-item/ListItem";
 
 const tabs = [
   {
@@ -20,7 +20,6 @@ const tabs = [
 ];
 
 const UserList = () => {
-  const dispatch = useAppDispatch();
   const { list, favorite, loading, paginate } = useAppSelector(
     (state) => state.user.data
   );

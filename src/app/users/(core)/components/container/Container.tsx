@@ -24,9 +24,9 @@ const UsersContianer = () => {
   }, [dispatch]);
 
   return (
-    <div className="container list--wrapper">
-      <UserList />
+    <div className="container list__wrapper">
       <UserFilters />
+      <UserList />
     </div>
   );
 };

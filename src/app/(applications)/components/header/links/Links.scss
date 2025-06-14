@@ -1,5 +1,5 @@
 .nav {
-  &--container {
+  &__container {
     display: inline-flex;
     gap: 0.75rem;
     align-items: center;
@@ -16,7 +16,7 @@
     }
   }
 
-  &-item {
+  &__item {
     padding: 0.25rem 0.5rem;
     border-radius: 6px;
     transition: background 0.2s ease;

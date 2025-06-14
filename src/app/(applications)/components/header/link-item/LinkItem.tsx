@@ -15,8 +15,8 @@ const HeaderLinkItem: FC<
   return (
     <Link
       {...props}
-      className={classNames("nav-item", className, {
-        "nav-item--active": pathname === props.href,
+      className={classNames("nav__item", className, {
+        "nav__item--active": pathname === props.href,
       })}
     >
       {children}

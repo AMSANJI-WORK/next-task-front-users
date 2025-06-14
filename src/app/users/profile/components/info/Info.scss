@@ -1,5 +1,5 @@
 .profile {
-  &--wrapper {
+  &__wrapper {
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -19,15 +19,15 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  &--image {
+  &__image {
     margin: auto;
     border-radius: 100%;
   }
-  &--item {
+  &__item {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    &--label {
+    &__label {
       font-size: 20px;
       text-transform: capitalize;
     }
