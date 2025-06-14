@@ -8,6 +8,8 @@ import {
 } from "@/app/(applications)/hooks/store.hooks";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/(applications)/components/toast/Toast";
+import { User } from "@/app/users/(core)/model/users.model";
+import { getFlagImageUrl } from "@/app/users/(core)/helper/users.helper";
 
 const ProfileInfo = () => {
   const router = useRouter();
@@ -15,7 +17,7 @@ const ProfileInfo = () => {
   const { addToast } = useToast();
   const selected = useAppSelector((state) => state.user.data.selected);
   const data = useMemo(
-    () => (selected || JSON.parse(localStorage?.selected)) ?? {},
+    () => JSON.parse(localStorage?.selected) || selected || {},
     [selected]
   );
   const fullname = useMemo(
@@ -33,7 +35,7 @@ const ProfileInfo = () => {
   );
   const isSelectedEmpty = () =>
     ((JSON.stringify(selected) === "{}" || !selected) &&
-      JSON.stringify(localStorage?.selected === "{}")) ||
+      localStorage?.selected === "{}") ||
     !localStorage?.selected;
   useEffect(() => {
     if (isSelectedEmpty()) {
@@ -61,7 +63,14 @@ const ProfileInfo = () => {
       <ProfileLebelValue label="cell">{data.cell}</ProfileLebelValue>
       <ProfileLebelValue label="phone">{data.phone}</ProfileLebelValue>
       <ProfileLebelValue label="country">
-        {data.location?.country} , {data.nat}
+        <Image
+          alt={data.location.country}
+          src={getFlagImageUrl(data.nat)}
+          width={20}
+          height={12}
+          loading="lazy"
+        />
+        {data.location?.country}
       </ProfileLebelValue>
       <ProfileLebelValue label="state">
         {data.location?.state}

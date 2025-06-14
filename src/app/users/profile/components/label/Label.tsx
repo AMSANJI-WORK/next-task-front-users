@@ -18,7 +18,7 @@ const ProfileLebelValue: FC<PropsWithChildren<Props>> = ({
   return (
     <div {...props} className={classNames("label--container", className)}>
       <div className="label--title">{label}</div>
-      <div className="label--value">{children || "-"}</div>
+      <div className="label--value">{children}</div>
     </div>
   );
 };

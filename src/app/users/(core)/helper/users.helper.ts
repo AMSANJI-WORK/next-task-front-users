@@ -1,6 +1,5 @@
-export function getFlagEmoji(countryCode: string): string {
-  const code = countryCode.toUpperCase();
-  return code.replace(/./g, (char) =>
-    String.fromCodePoint(127397 + char.charCodeAt(0))
-  );
+export function getFlagImageUrl(countryCode: string): string {
+  return `${
+    process.env.NEXT_PUBLIC_FLAG_CDN
+  }/w80/${countryCode.toLowerCase()}.png`;
 }

@@ -7,6 +7,7 @@ const initialState = {
   data: {
     loading: false,
     list: [] as User[],
+    favorite: [] as User[],
     paginate: {
       page: 1,
       results: PAGE_SIZE,
