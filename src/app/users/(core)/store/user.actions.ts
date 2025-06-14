@@ -37,7 +37,9 @@ export const userGetAll = (payload?: Partial<GetUsersProps>) => {
     } catch (error) {
       console.log(error);
     } finally {
-      dispatch(setUserState({ loading: false }));
+      setTimeout(() => {
+        dispatch(setUserState({ loading: false }));
+      }, 300);
     }
   };
 };
