@@ -67,14 +67,15 @@ const UserList = () => {
         ))}
       </nav>
       <ul className="list" onScroll={handleLoadMoreOnScroll}>
-        {loading && <div className="list__loading">loading</div>}
+        {loading && datasource.length === 0 && (
+          <div className="list__loading">loading</div>
+        )}
         {datasource.length === 0 && !loading && (
           <div className="list__no-data">No Data Exist</div>
         )}
-        {!loading &&
-          datasource.map((item) => (
-            <ListItem item={item} key={item.login.uuid} />
-          ))}
+        {datasource.map((item) => (
+          <ListItem item={item} key={item.login.uuid} />
+        ))}
       </ul>
     </div>
   );
