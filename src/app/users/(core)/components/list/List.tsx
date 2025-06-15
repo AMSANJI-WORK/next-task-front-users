@@ -7,6 +7,9 @@ import React, { useMemo, useState } from "react";
 import AppButton from "@/app/(applications)/components/button/Button";
 import classNames from "classnames";
 import ListItem from "../list-item/ListItem";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { userGetAll } from "../../store/user.actions";
+import { PAGE_SIZE } from "@/app/(applications)/(http)/http.constant";
 
 const tabs = [
   {
@@ -20,6 +23,8 @@ const tabs = [
 ];
 
 const UserList = () => {
+  const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
   const { list, favorite, loading, paginate } = useAppSelector(
     (state) => state.user.data
   );
@@ -31,8 +36,18 @@ const UserList = () => {
   const handleLoadMoreOnScroll = (
     e: React.UIEvent<HTMLUListElement, UIEvent>
   ) => {
-    if (activeTab === "all") {
-      console.log("scroll");
+    if (activeTab !== "all" || loading) return;
+    const target = e.currentTarget;
+    const scrollBottom =
+      target.scrollHeight - target.scrollTop - target.clientHeight;
+    const qurey = new Map();
+    if (searchParams.has("gender"))
+      qurey.set("gender", searchParams.get("gender")!);
+    if (searchParams.has("nat")) qurey.set("nat", searchParams.get("nat")!);
+    qurey.set("page", paginate.page + 1);
+    qurey.set("results", PAGE_SIZE);
+    if (scrollBottom < 50) {
+      dispatch(userGetAll(Object.fromEntries(qurey)));
     }
   };
   return (
