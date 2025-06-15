@@ -56,9 +56,10 @@ const UserList = () => {
         {datasource.length === 0 && !loading && (
           <div className="list__no-data">No Data Exist</div>
         )}
-        {datasource.map((item) => (
-          <ListItem item={item} key={item.login.uuid} />
-        ))}
+        {!loading &&
+          datasource.map((item) => (
+            <ListItem item={item} key={item.login.uuid} />
+          ))}
       </ul>
     </div>
   );

@@ -24,6 +24,8 @@ const UserSlice = createSlice({
   reducers: {
     setState: (state, { payload }: { payload: Partial<State["data"]> }) => {
       state.data = { ...state.data, ...payload };
+      if (state.data.favorite.length === 0 && localStorage.favorite)
+        state.data.favorite = JSON.parse(localStorage.favorite);
     },
   },
 });

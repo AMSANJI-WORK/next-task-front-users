@@ -26,11 +26,13 @@ const ListItem: FC<Props> = ({ item }) => {
     router.push("/users/profile");
   };
   const handleModifyFavorite = () => {
+    const newFavorites = favorite.filter(
+      (user) => user.login.uuid !== item.login.uuid
+    );
+    localStorage.favorite = JSON.stringify(newFavorites);
     dispatch(
       setUserState({
-        favorite: isInFavoriteItems
-          ? favorite.filter((user) => user.login.uuid !== item.login.uuid)
-          : [item, ...favorite],
+        favorite: isInFavoriteItems ? newFavorites : [item, ...favorite],
       })
     );
   };
