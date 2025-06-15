@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../model/users.model";
+import { UserSecure } from "../model/users.model";
 import { ApiPaginate } from "@/app/(applications)/(http)/http.model";
 import { PAGE_SIZE } from "@/app/(applications)/(http)/http.constant";
 
 const initialState = {
   data: {
     loading: false,
-    list: [] as User[],
-    favorite: [] as User[],
+    list: [] as UserSecure[],
+    favorite: [] as UserSecure[],
     paginate: {
       page: 1,
       results: PAGE_SIZE,
     } as Pick<ApiPaginate, "page" | "results">,
-    selected: {} as User | {},
+    selected: {} as UserSecure | {},
   },
 };
 

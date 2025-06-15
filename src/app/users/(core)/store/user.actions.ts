@@ -4,10 +4,10 @@ import { userRepository } from "../repository/users.repository";
 import { GetUsersProps } from "../model/users.repo.model";
 import { ApiStatus } from "@/app/(applications)/(http)/http.constant";
 import { ApiResponse } from "@/app/(applications)/(http)/http.model";
-import { User } from "../model/users.model";
+import { User, UserSecure } from "../model/users.model";
 
 const handleSuccess =
-  (payload: ApiResponse<User>) =>
+  (payload: ApiResponse<UserSecure>) =>
   (dispatch: AppDispatch, getState: () => RootState) => {
     const currentList = getState().user.data.list;
     const {

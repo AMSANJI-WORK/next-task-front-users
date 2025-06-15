@@ -21,6 +21,11 @@ export type User = {
   picture: UserPicture;
   nat: string;
 };
+
+export type UserSecure = Omit<User, "login"> & {
+  login: UserLoginInfoSecure;
+};
+
 export type UserProfile = Omit<ApiResponse<User>, "info">;
 export type UserDob = {
   date: string;
@@ -55,6 +60,8 @@ export type UserLoginInfo = {
   sha1: string;
   sha256: string;
 };
+
+export type UserLoginInfoSecure = Pick<UserLoginInfo, "uuid" | "username">;
 
 export type UserPicture = {
   large: string;

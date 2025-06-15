@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { User } from "../../model/users.model";
+import { User, UserSecure } from "../../model/users.model";
 import Image from "next/image";
 import {
   useAppDispatch,
@@ -13,7 +13,7 @@ import IconStarOutline from "@/app/(applications)/components/icons/Star";
 import IconStarFill from "@/app/(applications)/components/icons/StarFill";
 
 type Props = {
-  item: User;
+  item: UserSecure;
 };
 
 const ListItem: FC<Props> = ({ item }) => {

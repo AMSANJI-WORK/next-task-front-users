@@ -15,21 +15,13 @@ export async function GET(req: NextRequest) {
       const res = (await response.json()) as ApiResponse<User>;
       return NextResponse.json({
         ...res,
-        results: res.results.map(
-          ({ login: { username, uuid }, picture, ...item }) => ({
-            ...item,
-            login: {
-              username,
-              uuid,
-            },
-            picture: Object.fromEntries(
-              Object.entries(picture).map(([key, value]) => [
-                key,
-                removeBaseUrlFromImages(value),
-              ])
-            ),
-          })
-        ),
+        results: res.results.map(({ login: { username, uuid }, ...item }) => ({
+          ...item,
+          login: {
+            username,
+            uuid,
+          },
+        })),
       });
     }
 
