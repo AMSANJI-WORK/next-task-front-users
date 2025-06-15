@@ -1,7 +1,8 @@
+@import "../../../../\(applications\)/resources/mixins.scss";
+
 .label {
   &__container {
-    display: flex;
-    flex-direction: column;
+    @include flex__column;
     gap: 12px;
   }
   &__title {

@@ -1,8 +1,8 @@
+@import "../../../resources/mixins.scss";
 .nav {
   &__container {
-    display: inline-flex;
+    @include flex__inline;
     gap: 0.75rem;
-    align-items: center;
 
     a {
       all: unset;
