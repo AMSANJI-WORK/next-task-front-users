@@ -8,7 +8,7 @@ class UserRepository {
   getAll = (
     params: Partial<GetUsersProps> = {
       results: PAGE_SIZE,
-      exc: "registered",
+      exc: "registered,dob",
     }
   ) => client.get<ApiResponse<UserSecure>>(this.resource, { params });
   random = (params = { results: 1, exc: "login,info" }) =>

@@ -51,5 +51,33 @@
         cursor: pointer;
       }
     }
+    &__multi-selector {
+      padding: 1rem;
+      font-family: sans-serif;
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .option {
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: all 0.125s ease;
+
+        &:hover {
+          background-color: #e6e6e6;
+        }
+
+        &.selected {
+          background-color: #007bff;
+          color: white;
+          border-color: #007bff;
+        }
+      }
+    }
   }
 }
