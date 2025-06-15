@@ -9,16 +9,37 @@ import {
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/(applications)/components/toast/Toast";
 import { getFlagImageUrl } from "@/app/users/(core)/helper/users.helper";
+import AppButton from "@/app/(applications)/components/button/Button";
+import { setUserState } from "@/app/users/(core)/store/user.slice";
+import IconStarFill from "@/app/(applications)/components/icons/StarFill";
+import IconStarOutline from "@/app/(applications)/components/icons/Star";
 
 const ProfileInfo = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { addToast } = useToast();
+  const favorite = useAppSelector((state) => state.user.data.favorite);
   const selected = useAppSelector((state) => state.user.data.selected);
   const data = useMemo(
     () => JSON.parse(localStorage?.selected) || selected || {},
     [selected]
   );
+  const isInFavoriteItems = useMemo(
+    () => favorite.find((user) => user.login.uuid === data.login.uuid),
+    [favorite.length, data]
+  );
+  const handleModifyFavorite = () => {
+    const newFavorites = favorite.filter(
+      (user) => user.login.uuid !== data?.login.uuid
+    );
+    localStorage.favorite = JSON.stringify(newFavorites);
+    dispatch(
+      setUserState({
+        favorite: isInFavoriteItems ? newFavorites : [data, ...favorite],
+      })
+    );
+  };
+
   const fullname = useMemo(
     () => `${data.name?.title} . ${data.name?.first} ${data.name?.last}`,
     [data]
@@ -46,13 +67,22 @@ const ProfileInfo = () => {
   return (
     <div className="container profile__wrapper">
       <ProfileLebelValue label="" className="hidden hidden--lg" />
-      <Image
-        alt={fullname}
-        className="profile__image"
-        src={data.picture?.large || null}
-        width={100}
-        height={100}
-      />
+      <ProfileLebelValue label="" classNameValue="profile__image__container">
+        <Image
+          alt={fullname}
+          className="profile__image"
+          src={data.picture?.large || null}
+          width={100}
+          height={100}
+        />
+        <AppButton size="sm" onClick={handleModifyFavorite}>
+          {isInFavoriteItems ? (
+            <IconStarFill width={24} height={24} />
+          ) : (
+            <IconStarOutline width={24} height={24} />
+          )}
+        </AppButton>
+      </ProfileLebelValue>
       <ProfileLebelValue label="" className="hidden hidden--sm" />
       <ProfileLebelValue label="full name">{fullname}</ProfileLebelValue>
       <ProfileLebelValue label="email">{data.email}</ProfileLebelValue>

@@ -1,0 +1,50 @@
+@mixin favorite__button {
+  background: transparent !important;
+  padding: 0.25rem !important;
+}
+
+@mixin flex__column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@mixin flex__column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@mixin flex__inline {
+  display: inline-flex;
+  align-items: center;
+}
+@mixin flex-list-layout-responsive {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  gap: 20px;
+  flex-direction: column;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+
+    @media (min-width: 1024px) {
+      gap: 100px;
+    }
+
+    flex-direction: column;
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
+  }
+}

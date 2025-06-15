@@ -26,7 +26,7 @@ export type UserSecure = Omit<User, "login"> & {
   login: UserLoginInfoSecure;
 };
 
-export type UserProfile = Omit<ApiResponse<User>, "info">;
+export type UserProfile = Omit<ApiResponse<UserSecure>, "info">;
 export type UserDob = {
   date: string;
   age: number;

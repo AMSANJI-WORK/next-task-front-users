@@ -1,3 +1,4 @@
+@import "../../../../\(applications\)/resources/mixins.scss";
 .profile {
   &__wrapper {
     background: white;
@@ -19,13 +20,20 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
+
   &__image {
-    margin: auto;
     border-radius: 100%;
+    &__container {
+      @include flex__inline;
+      gap: 1rem;
+      margin: auto;
+      button {
+        @include favorite__button;
+      }
+    }
   }
   &__item {
-    display: flex;
-    flex-direction: column;
+    @include flex__column;
     gap: 0.5rem;
     &__label {
       font-size: 20px;
