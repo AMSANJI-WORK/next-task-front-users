@@ -9,12 +9,6 @@
   width: 100%;
 }
 
-@mixin flex__column {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 @mixin flex__inline {
   display: inline-flex;
   align-items: center;
@@ -35,9 +29,9 @@
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 30px;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1280px) {
       gap: 100px;
     }
 

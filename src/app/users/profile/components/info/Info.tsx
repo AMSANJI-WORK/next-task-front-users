@@ -13,32 +13,17 @@ import AppButton from "@/app/(applications)/components/button/Button";
 import { setUserState } from "@/app/users/(core)/store/user.slice";
 import IconStarFill from "@/app/(applications)/components/icons/StarFill";
 import IconStarOutline from "@/app/(applications)/components/icons/Star";
+import { useUser } from "@/app/users/(core)/hooks/user.hook";
 
 const ProfileInfo = () => {
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const { addToast } = useToast();
-  const favorite = useAppSelector((state) => state.user.data.favorite);
+  const { isInFavoriteItems, handleModifyFavorite } = useUser();
   const selected = useAppSelector((state) => state.user.data.selected);
   const data = useMemo(
     () => JSON.parse(localStorage?.selected) || selected || {},
     [selected]
   );
-  const isInFavoriteItems = useMemo(
-    () => favorite.find((user) => user.login.uuid === data.login.uuid),
-    [favorite.length, data]
-  );
-  const handleModifyFavorite = () => {
-    const newFavorites = favorite.filter(
-      (user) => user.login.uuid !== data?.login.uuid
-    );
-    localStorage.favorite = JSON.stringify(newFavorites);
-    dispatch(
-      setUserState({
-        favorite: isInFavoriteItems ? newFavorites : [data, ...favorite],
-      })
-    );
-  };
 
   const fullname = useMemo(
     () => `${data.name?.title} . ${data.name?.first} ${data.name?.last}`,
@@ -75,8 +60,8 @@ const ProfileInfo = () => {
           width={100}
           height={100}
         />
-        <AppButton size="sm" onClick={handleModifyFavorite}>
-          {isInFavoriteItems ? (
+        <AppButton size="sm" onClick={() => handleModifyFavorite(data)}>
+          {isInFavoriteItems(data) ? (
             <IconStarFill width={24} height={24} />
           ) : (
             <IconStarOutline width={24} height={24} />

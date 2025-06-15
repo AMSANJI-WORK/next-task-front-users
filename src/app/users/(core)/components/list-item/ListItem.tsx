@@ -1,53 +1,38 @@
-import React, { FC, useMemo } from "react";
-import { User, UserSecure } from "../../model/users.model";
+import React, { FC } from "react";
+import { UserSecure } from "../../model/users.model";
 import Image from "next/image";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "@/app/(applications)/hooks/store.hooks";
+import { useAppDispatch } from "@/app/(applications)/hooks/store.hooks";
 import { useRouter } from "next/navigation";
 import { setUserState } from "../../store/user.slice";
 import { getFlagImageUrl } from "../../helper/users.helper";
 import AppButton from "@/app/(applications)/components/button/Button";
 import IconStarOutline from "@/app/(applications)/components/icons/Star";
 import IconStarFill from "@/app/(applications)/components/icons/StarFill";
+import { useUser } from "../../hooks/user.hook";
 
 type Props = {
   item: UserSecure;
 };
 
 const ListItem: FC<Props> = ({ item }) => {
-  const dispatch = useAppDispatch();
-  const favorite = useAppSelector((state) => state.user.data.favorite);
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { isInFavoriteItems, handleModifyFavorite } = useUser();
+
   const handleClick = () => {
     dispatch(setUserState({ selected: item }));
     localStorage.selected = JSON.stringify(item);
     router.push("/users/profile");
   };
-  const handleModifyFavorite = () => {
-    const newFavorites = favorite.filter(
-      (user) => user.login.uuid !== item.login.uuid
-    );
-    localStorage.favorite = JSON.stringify(newFavorites);
-    dispatch(
-      setUserState({
-        favorite: isInFavoriteItems ? newFavorites : [item, ...favorite],
-      })
-    );
-  };
-  const isInFavoriteItems = useMemo(
-    () => favorite.find((user) => user.login.uuid === item.login.uuid),
-    [favorite.length, item]
-  );
+
   return (
     <li className="list__item" key={item.login.uuid}>
       <AppButton
         size="sm"
-        onClick={handleModifyFavorite}
+        onClick={() => handleModifyFavorite(item)}
         className="list__item__favorite"
       >
-        {isInFavoriteItems ? (
+        {isInFavoriteItems(item) ? (
           <IconStarFill width={24} height={24} />
         ) : (
           <IconStarOutline width={24} height={24} />
