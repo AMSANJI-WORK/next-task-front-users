@@ -6,13 +6,12 @@ import { useAppDispatch } from "@/app/(applications)/hooks/store.hooks";
 import { setUserState } from "../../store/user.slice";
 import { PAGE_SIZE } from "@/app/(applications)/(http)/http.constant";
 import UserList from "../list/List";
-import UserFilters from "../filters/Filters";
+import UserFilters from "../filter/Filters";
 import "./container.scss";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const UsersContianer = () => {
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const handleFetchUser = () => {
     const query = new Map();
@@ -21,7 +20,6 @@ const UsersContianer = () => {
     if (searchParams.has("gender"))
       query.set("gender", searchParams.get("gender"));
     if (searchParams.has("nat")) query.set("nat", searchParams.get("nat"));
-    console.log(Object.fromEntries(query));
     dispatch(userGetAll(Object.fromEntries(query)));
   };
   useEffect(() => {

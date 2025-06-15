@@ -25,7 +25,7 @@ const NATIONALITIES = [
   "US",
 ];
 
-export const MultiSelector = () => {
+export const FilterMultiSelector = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selected, setSelected] = useState<string[]>(
@@ -46,6 +46,10 @@ export const MultiSelector = () => {
     if (gender) url.searchParams.append("gender", gender);
     router.replace(`/users${url.search}`);
   }, [selected.length]);
+  useEffect(() => {
+    if (selected.length !== 0 && !searchParams.has("nat")) setSelected([]);
+  }, [searchParams]);
+
   return (
     <fieldset className="filter__form__multi-selector">
       <legend>Nationalities</legend>
@@ -65,4 +69,4 @@ export const MultiSelector = () => {
   );
 };
 
-export default MultiSelector;
+export default FilterMultiSelector;

@@ -22,7 +22,7 @@ const genders = [
     value: "female",
   },
 ];
-const GenderSelect = () => {
+const FilterGenderSelect = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [gender, setgender] = useState<string>(() =>
@@ -45,9 +45,13 @@ const GenderSelect = () => {
 
     router.replace(`/users${url.search}`);
   }, [gender]);
+  useEffect(() => {
+    if (!searchParams.has("gender") && gender && gender !== "all")
+      setgender("");
+  }, [searchParams]);
 
   return (
-    <fieldset>
+    <fieldset key={searchParams.get("gender")}>
       <legend>Gender</legend>
       {genders.map((item) => (
         <div key={item.value} className="filter__form__radio-group">
@@ -67,4 +71,4 @@ const GenderSelect = () => {
   );
 };
 
-export default GenderSelect;
+export default FilterGenderSelect;
