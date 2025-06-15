@@ -3,8 +3,9 @@ import { setUserState } from "./user.slice";
 import { userRepository } from "../repository/users.repository";
 import { GetUsersProps } from "../model/users.repo.model";
 import { ApiStatus } from "@/app/(applications)/(http)/http.constant";
-import { ApiResponse } from "@/app/(applications)/(http)/http.model";
+import { ApiError, ApiResponse } from "@/app/(applications)/(http)/http.model";
 import { User, UserSecure } from "../model/users.model";
+import { AxiosError } from "axios";
 
 const handleSuccess =
   (payload: ApiResponse<UserSecure>) =>
@@ -35,7 +36,8 @@ export const userGetAll = (payload?: Partial<GetUsersProps>) => {
       if (response.status === ApiStatus.SUCCESS)
         dispatch(handleSuccess(response.data));
     } catch (error) {
-      console.log(error);
+      const e = error as AxiosError<ApiError>;
+      dispatch(setUserState({ error: e.response?.data.error || e.message }));
     } finally {
       setTimeout(() => {
         dispatch(setUserState({ loading: false }));

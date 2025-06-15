@@ -13,6 +13,7 @@ const initialState = {
       results: PAGE_SIZE,
     } as Pick<ApiPaginate, "page" | "results">,
     selected: {} as UserSecure | {},
+    error: "",
   },
 };
 

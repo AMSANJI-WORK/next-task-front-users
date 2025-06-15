@@ -8,7 +8,7 @@ import { useCallback } from "react";
 import { userGetAll } from "../store/user.actions";
 import { setUserState } from "../store/user.slice";
 import { UserSecure } from "../model/users.model";
-export const useUser = () => {
+export const useUser = (firstTime = false) => {
   const dispatch = useAppDispatch();
   const {
     paginate: { page: currentPage },
@@ -27,7 +27,7 @@ export const useUser = () => {
     if (searchParams.has("gender"))
       qurey.set("gender", searchParams.get("gender")!);
     if (searchParams.has("nat")) qurey.set("nat", searchParams.get("nat")!);
-    qurey.set("page", currentPage + 1);
+    qurey.set("page", firstTime ? currentPage : currentPage + 1);
     qurey.set("results", PAGE_SIZE);
     return qurey;
   }, [currentPage, searchParams]);
